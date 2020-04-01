@@ -4,8 +4,8 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.config.productionTip = false
-import http from './http';
-Vue.protoType.$http = http
+import http from './http.js';
+Vue.prototype.$http = http
 Vue.use(ElementUI);
 new Vue({
     router,

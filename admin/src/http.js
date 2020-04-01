@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const http = axios.create({
-    baseURL = 'htpp://localhost:8080/admin/api'
+    baseURL: 'http://localhost:3000/admin/api'
 })
 
 export default http
