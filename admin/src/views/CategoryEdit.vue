@@ -38,11 +38,11 @@ export default {
             let res;
             if (this.id) {
                 res = await this.$http.put(
-                    `/categories/${this.id}`,
+                    `/rest/categories/${this.id}`,
                     this.model
                 );
             } else {
-                res = await this.$http.post("/categories", this.model);
+                res = await this.$http.post("/rest/categories", this.model);
             }
             this.$router.push({
                 path: "/CategoryList"
@@ -53,13 +53,12 @@ export default {
             });
         },
         async fatch() {
-            const res = await this.$http.get(`/categories/${this.id}`);
+            const res = await this.$http.get(`/rest/categories/${this.id}`);
             this.model = res.data;
         },
         async fetchParent() {
-            const res = await this.$http.get(`/categories`);
+            const res = await this.$http.get(`/rest/categories`);
             this.parentOptions = res.data;
-            console.log(this.parentOptions);
         }
     },
     created() {
