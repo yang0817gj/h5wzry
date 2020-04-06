@@ -8,7 +8,11 @@ module.exports = (app) => {
         res.send(model)
     })
     router.get('/', async(req, res) => {
-        const items = await req.model.find().populate('parent').limit(10) // find 相当于select  进行查询操作 populate 查找绑定对象
+        const queryOption = {}
+        if (req.model.modelName == 'Category') {
+            queryOption.populate = 'parent'
+        }
+        const items = await req.model.find().setOptions(queryOption).limit(10) // find 相当于select  进行查询操作 populate 查找绑定对象
         res.send(items)
     })
     router.get('/:id', async(req, res) => {
