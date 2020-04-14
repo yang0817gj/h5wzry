@@ -43,6 +43,25 @@ const routes = [{
                 props: true, // 在页面中可以 props 拿到动态参数
                 component: () =>
                     import ('@/views/ItemEdit.vue')
+            },
+            {
+                path: '/heros/edit',
+                name: 'herosEdit',
+                component: () =>
+                    import ('@/views/HeroEdit.vue')
+            },
+            {
+                path: '/heros/list',
+                name: 'herosList',
+                component: () =>
+                    import ('@/views/HeroList.vue')
+            },
+            {
+                path: '/heros/edit/:id',
+                name: 'herosEdit',
+                props: true, // 在页面中可以 props 拿到动态参数
+                component: () =>
+                    import ('@/views/HeroEdit.vue')
             }
         ]
     },
