@@ -8,9 +8,13 @@ module.exports = (app) => {
         res.send(model)
     })
     router.get('/', async(req, res) => {
+        // populate 方法 返回关联对象id 转换成 对象 
         const queryOption = {}
         if (req.model.modelName == 'Category') {
             queryOption.populate = 'parent'
+        }
+        if (req.model.modelName == 'Article') {
+            queryOption.populate = 'categories'
         }
         const items = await req.model.find().setOptions(queryOption).limit(10) // find 相当于select  进行查询操作 populate 查找绑定对象
         res.send(items)

@@ -7,9 +7,8 @@ const upload = multer({ dest: __dirname + '/../../uploads' })
 module.exports = (app) => {
     // upload.single() 接受名称为的单个文件fieldname。单个文件将存储在中req.file。
     app.post('/admin/api/upload', upload.single('file'), async(req, res) => {
-            const file = req.file
-            file.url = `http://localhost:3000/uploads/${file.filename}`
-            res.send(file)
-        })
-        // http: //localhost:3000/uploads/93b6a6e7af522ceda9e93ed788e646dc
+        const file = req.file
+        file.url = `http://localhost:3000/uploads/${file.filename}`
+        res.send(file)
+    })
 }
