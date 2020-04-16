@@ -81,6 +81,25 @@ const routes = [{
                 props: true, // 在页面中可以 props 拿到动态参数
                 component: () =>
                     import ('@/views/ArticleEdit.vue')
+            },
+            {
+                path: '/ads/edit',
+                name: 'adsEdit',
+                component: () =>
+                    import ('@/views/AdEdit.vue')
+            },
+            {
+                path: '/ads/list',
+                name: 'adsList',
+                component: () =>
+                    import ('@/views/AdList.vue')
+            },
+            {
+                path: '/ads/edit/:id',
+                name: 'adsEdit',
+                props: true, // 在页面中可以 props 拿到动态参数
+                component: () =>
+                    import ('@/views/AdEdit.vue')
             }
         ]
     },
