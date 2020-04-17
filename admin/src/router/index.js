@@ -100,6 +100,22 @@ const routes = [{
                 props: true, // 在页面中可以 props 拿到动态参数
                 component: () =>
                     import ('@/views/AdEdit.vue')
+            },
+            {
+                path: '/admin_users/edit',
+                component: () =>
+                    import ('@/views/AdminUserEdit.vue')
+            },
+            {
+                path: '/admin_users/list',
+                component: () =>
+                    import ('@/views/AdminUserList.vue')
+            },
+            {
+                path: '/admin_users/edit/:id',
+                props: true, // 在页面中可以 props 拿到动态参数
+                component: () =>
+                    import ('@/views/AdminUserEdit.vue')
             }
         ]
     },
