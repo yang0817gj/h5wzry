@@ -51,9 +51,9 @@
                             <el-menu-item index="/CategoryList">分类列表</el-menu-item>
                         </el-menu-item-group>
                         <el-menu-item-group>
-                            <template slot="title">列表</template>
-                            <el-menu-item index="/admin_users/edit">新建分类</el-menu-item>
-                            <el-menu-item index="/admin_users/list">分类列表</el-menu-item>
+                            <template slot="title">管理员</template>
+                            <el-menu-item index="/admin_users/edit">新建管理员</el-menu-item>
+                            <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
                         </el-menu-item-group>
                         
                     </el-submenu>

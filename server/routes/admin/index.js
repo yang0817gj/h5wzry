@@ -1,5 +1,6 @@
 module.exports = (app) => {
     const express = require('express')
+    const anth = require('../../utils/auth')
     const router = express.Router({
             mergeParams: true // 保留来自父路由器的req.params值。如果父对象和子对象具有冲突的参数名，则以子对象的值为准。
         }) // 创建express 的子路由, 分模块存储接口
@@ -28,14 +29,16 @@ module.exports = (app) => {
         res.send({ msg: '修改成功' })
     })
     router.delete('/:id', async(req, res) => {
-            await req.model.findByIdAndDelete(req.params.id) // find 相当于select  进行查询操作
-            res.send({ msg: '删除成功' })
-        })
-        /**
-         * 使用 rest 防止接口冲突 加上私有前缀
-         *  /:resourse 绑定动态名称  
-         */
-    app.use('/admin/api/rest/:resourse', (req, res, next) => {
+        await req.model.findByIdAndDelete(req.params.id) // find 相当于select  进行查询操作
+        res.send({ msg: '删除成功' })
+    })
+
+    /**
+     * 使用 rest 防止接口冲突 加上私有前缀
+     *  /:resourse 绑定动态名称  
+     */
+
+    app.use('/admin/api/rest/:resourse', anth(), (req, res, next) => {
         const MODEL_NAME = require('inflection').classify(req.params.resourse)
             // const model = require(`../../models/${MODEL_NAME}`);
             // 为什么不使用 const   router 会访问不到model 所以挂载到req上
