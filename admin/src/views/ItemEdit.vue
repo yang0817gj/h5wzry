@@ -10,6 +10,7 @@
                     class="avatar-uploader"
                     :action="$http.defaults.baseURL + '/upload'"
                     :show-file-list="false"
+                    :headers="uploadsHeaders()"
                     :on-success="handleAvatarSuccess"
                     :before-upload="beforeAvatarUpload"
                 >

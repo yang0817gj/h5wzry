@@ -15,6 +15,7 @@
                             class="avatar-uploader"
                             :action="$http.defaults.baseURL + '/upload'"
                             :show-file-list="false"
+                            :headers="uploadsHeaders()"
                             :on-success="handleAvatarSuccess"
                             :before-upload="beforeAvatarUpload"
                         >
@@ -88,6 +89,7 @@
                                         class="avatar-uploader"
                                         :action="$http.defaults.baseURL + '/upload'"
                                         :show-file-list="false"
+                                        :headers="uploadsHeaders()"
                                         :on-success="res => $set(item, 'icon', res.url)"
                                     >
                                         <img v-if="item.icon" :src="item.icon" class="avatar" />
