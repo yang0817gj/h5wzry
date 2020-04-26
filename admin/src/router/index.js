@@ -123,6 +123,12 @@ const routes = [{
                 props: true, // 在页面中可以 props 拿到动态参数
                 component: () =>
                     import ('@/views/AdminUserEdit.vue')
+            },
+            {
+                path: '/fileUploads',
+                props: true, // 在页面中可以 props 拿到动态参数
+                component: () =>
+                    import ('@/views/FileUploads.vue')
             }
         ]
     },

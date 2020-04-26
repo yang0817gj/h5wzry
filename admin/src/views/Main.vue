@@ -16,6 +16,10 @@
                             <i class="el-icon-message"></i>内容管理
                         </template>
                         <el-menu-item-group>
+                            <template slot="title">大文件上传</template>
+                            <el-menu-item index="/fileUploads">上传</el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group>
                             <template slot="title">物品</template>
                             <el-menu-item index="/items/edit">新建物品</el-menu-item>
                             <el-menu-item index="/items/list">物品列表</el-menu-item>

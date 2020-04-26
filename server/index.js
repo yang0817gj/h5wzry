@@ -12,6 +12,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 require('./routes/admin')(app)
 require('./plugins/db')(app)
 require('./routes/upload')(app)
+require('./routes/uploads')(app)
 require('./routes/login')(app)
 
 // assert会抛出异常 在这里要捕获异常 并给web返回异常
