@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+html {
+    font-size: 13px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.2em;
+    background: #f1f1f1;
+}
+
+a {
+    text-decoration: none;
+    color: #333
+}
+
+// $colors
+$colors: ( "primary": #db9e3f, "light": #f9f9f9, "grey": #999, "dark": #222, "white": #fff, "black": #000, );
+@each $colorKey,
+$var in $colors {
+    .text-#{$colorKey} {
+        color: $var
+    }
+    .bg-#{$colorKey} {
+        background-color: $var
+    }
+}
+
+// test
+@each $var in (left, center, right) {
+    .test-#{$var} {
+        text-align: $var;
+    }
+}
+
+// font szie
+$base-font-size: 1rem;
+$font-sizes: ( xs: 0.7692, // 10
+sm: 0.9231, // 12
+md: 1, // 13
+lg: 1.0769, // 14
+xl: 1.2308 // 16
+);
+@each $key,
+$value in $font-sizes {
+    .fz-#{$key} {
+        font-size: $value * $base-font-size;
+    }
+}
+
+// flex
+.d-flex {
+    display: flex;
+}
+
+$flex-jc: ( start: flex-start, end: flex-end, center: center, between: space-between, around: space-around);
+@each $key,
+$value in $flex-jc {
+    .jc-#{$key} {
+        justify-content: $value;
+    }
+}
+
+$flex-ai: ( start: flex-start, end: flex-end, center: center, stretch:stretch);
+@each $key,
+$value in $flex-ai {
+    .ai-#{$key} {
+        align-items: $value;
+    }
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-grow-1 {
+    flex-grow: 1; // 会占满剩余的宽度
+}
+
+// btn
+.btn {
+    border: none;
+    border-radius: 0.1538rem;
+    font-size: map-get($map: $font-sizes, $key: 'sm') * $base-font-size;
+}
+
+// width height
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
