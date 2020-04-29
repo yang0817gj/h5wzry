@@ -47,7 +47,17 @@
             </div>
         </div>
         <!-- end of nav icons -->
-        
+        <!--  -->
+        <m-list-card title="新闻资讯" icon="menu" :categories="newsCats">
+            <template #category="{items}">
+                <div v-for="(mm,ii) in items.newsList" :key="ii" style="padding:0.7692rem 0;">
+                    <span>[{{mm.categroyName}}]</span>
+                    <span>|</span>
+                    <span>{{mm.title}}</span>
+                    <span>{{mm.date}}</span>
+                </div>
+            </template>
+        </m-list-card>
     </div>
 </template>
 <script>
@@ -60,7 +70,59 @@ export default {
                     el: ".swiper-pagination"
                 }
                 // Some Swiper option/callback...
-            }
+            },
+            newsCats: [
+                {
+                    name: "热门",
+                    newsList: new Array(5).fill({}).map(v => {
+                        return {
+                            categroyName: "公告",
+                            title: "4月28日全服不停机优化公告",
+                            date: "04/28"
+                        };
+                    })
+                },
+                {
+                    name: "新闻",
+                    newsList: new Array(5).fill({}).map(v => {
+                        return {
+                            categroyName: "新闻",
+                            title: "4月28日全服不停机优化公告",
+                            date: "04/28"
+                        };
+                    })
+                },
+                {
+                    name: "新闻",
+                    newsList: new Array(5).fill({}).map(v => {
+                        return {
+                            categroyName: "新闻",
+                            title: "4月28日全服不停机优化公告",
+                            date: "04/28"
+                        };
+                    })
+                },
+                {
+                    name: "新闻",
+                    newsList: new Array(5).fill({}).map(v => {
+                        return {
+                            categroyName: "新闻",
+                            title: "4月28日全服不停机优化公告",
+                            date: "04/28"
+                        };
+                    })
+                },
+                {
+                    name: "新闻",
+                    newsList: new Array(5).fill({}).map(v => {
+                        return {
+                            categroyName: "新闻",
+                            title: "4月28日全服不停机优化公告",
+                            date: "04/28"
+                        };
+                    })
+                }
+            ]
         };
     },
     computed: {
@@ -75,7 +137,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 @import "../style/variables.scss";
 .swiper-home {
     text-align: right;
@@ -142,6 +204,25 @@ export default {
     }
     .nav-item:nth-child(4n + 1) {
         border-left: none;
+    }
+}
+.card {
+    margin-top: 1.1538rem;
+    padding: 1.1538rem;
+    background: #fff;
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.5385rem;
+        .nav-item {
+            color: map-get($map: $colors, $key: "dark");
+            border-bottom: 0.2308rem solid transparent;
+            &.active {
+                color: map-get($map: $colors, $key: "primary");
+                border-bottom: 0.2308rem solid
+                    map-get($map: $colors, $key: "primary");
+            }
+        }
     }
 }
 </style>

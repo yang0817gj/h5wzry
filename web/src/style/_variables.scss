@@ -67,3 +67,12 @@ $flex-ai: ( start: flex-start, end: flex-end, center: center, stretch:stretch);
 .h-100 {
     height: 100%;
 }
+
+// font szie
+$base-font-size: 1rem;
+$font-sizes: ( xs: 0.7692, // 10
+sm: 0.9231, // 12
+md: 1, // 13
+lg: 1.0769, // 14
+xl: 1.2308 // 16
+);
