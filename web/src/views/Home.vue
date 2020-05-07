@@ -50,79 +50,42 @@
         <!--  -->
         <m-list-card title="新闻资讯" icon="menu" :categories="newsCats">
             <template #category="{items}">
-                <div v-for="(mm,ii) in items.newsList" :key="ii" style="padding:0.7692rem 0;">
-                    <span>[{{mm.categroyName}}]</span>
-                    <span>|</span>
-                    <span>{{mm.title}}</span>
-                    <span>{{mm.date}}</span>
+                <div v-for="(mm,ii) in items.newList" class="d-flex" :key="ii" style="padding:0.7692rem 0;">
+                    <span class="text-info" style="margin-right:0.3615rem;">[{{mm.categroyName}}]</span>
+                    <span style="margin-right:0.4615rem;">|</span>
+                    <span class="flex-1 text-drak fz-sm text-ellipsis">{{mm.title}}</span>
+                    <span class="text-grey">{{mm.createdAt | data}}</span>
                 </div>
             </template>
         </m-list-card>
     </div>
 </template>
 <script>
+import dayjs from 'dayjs'
 export default {
+    filters: {
+        data(val) {
+            return dayjs(val).format('MM/DD')
+        }
+    },
     name: "carrousel",
     data() {
         return {
             swiperOptions: {
                 pagination: {
                     el: ".swiper-pagination"
-                }
+                },
+                //自动轮播
+                autoplay: {
+                    delay: 2000,
+                    //当用户滑动图片后继续自动轮播
+                    disableOnInteraction: false
+                },
+                //开启循环模式
+                loop: true
                 // Some Swiper option/callback...
             },
-            newsCats: [
-                {
-                    name: "热门",
-                    newsList: new Array(5).fill({}).map(v => {
-                        return {
-                            categroyName: "公告",
-                            title: "4月28日全服不停机优化公告",
-                            date: "04/28"
-                        };
-                    })
-                },
-                {
-                    name: "新闻",
-                    newsList: new Array(5).fill({}).map(v => {
-                        return {
-                            categroyName: "新闻",
-                            title: "4月28日全服不停机优化公告",
-                            date: "04/28"
-                        };
-                    })
-                },
-                {
-                    name: "新闻",
-                    newsList: new Array(5).fill({}).map(v => {
-                        return {
-                            categroyName: "新闻",
-                            title: "4月28日全服不停机优化公告",
-                            date: "04/28"
-                        };
-                    })
-                },
-                {
-                    name: "新闻",
-                    newsList: new Array(5).fill({}).map(v => {
-                        return {
-                            categroyName: "新闻",
-                            title: "4月28日全服不停机优化公告",
-                            date: "04/28"
-                        };
-                    })
-                },
-                {
-                    name: "新闻",
-                    newsList: new Array(5).fill({}).map(v => {
-                        return {
-                            categroyName: "新闻",
-                            title: "4月28日全服不停机优化公告",
-                            date: "04/28"
-                        };
-                    })
-                }
-            ]
+            newsCats: []
         };
     },
     computed: {
@@ -130,9 +93,18 @@ export default {
             return this.$refs.mySwiper.$swiper;
         }
     },
+    created() {
+        this.getList()
+    },
     mounted() {
-        console.log("Current Swiper instance object", this.swiper);
         this.swiper.slideTo(3, 1000, false);
+    },
+    methods: {
+        async getList() {
+            const { data } = await this.$http.get("/news/list");
+            this.newsCats = data
+            console.log(this.newsCats)
+        }
     }
 };
 </script>

@@ -31,6 +31,9 @@ export default {};
 <style lang="scss">
 .tabBar {
     padding: 0.7692rem 1.5385rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 .up-btn {
     padding: 0.3077rem 0.6154rem;

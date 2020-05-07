@@ -17,7 +17,7 @@ module.exports = (app) => {
         if (req.model.modelName == 'Article') {
             queryOption.populate = 'categories'
         }
-        const items = await req.model.find().setOptions(queryOption).limit(10) // find 相当于select  进行查询操作 populate 查找绑定对象
+        const items = await req.model.find().setOptions(queryOption).limit(100) // find 相当于select  进行查询操作 populate 查找绑定对象
         res.send(items)
     })
     router.get('/:id', async(req, res) => {

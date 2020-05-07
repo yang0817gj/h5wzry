@@ -7,12 +7,12 @@
         </div>
         <div class="card-body">
             <div class="nav">
-                <div class="nav-item " :class="{active: active == i}" @click="active = i" v-for="(m,i) in categories" :key="i">
+                <div class="nav-item " :class="{active: active == i}" @click="$refs.list.$swiper.slideTo(i)" v-for="(m,i) in categories" :key="i">
                     <div class="nav-link">{{m.name}}</div>
                 </div>
             </div>
             <div style="padding-top:0.7692rem;">
-                <swiper>
+                <swiper ref="list"  @slide-change="handleSlide">
                     <swiper-slide v-for="(m,i) in categories" :key="i">
                         <slot name="category" :items="m"></slot>
                     </swiper-slide>
@@ -38,7 +38,12 @@ export default {
         return {
             active: 0
         };
-    }
+    },
+    methods: {
+        handleSlide () {
+            this.active = this.$refs.list.$swiper.activeIndex
+        }
+    },
 };
 </script>
 

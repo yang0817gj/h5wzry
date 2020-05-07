@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+import http from './http';
+Vue.prototype.$http = http
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */ )
 Vue.config.productionTip = false
 import './style/style.scss'

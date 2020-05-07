@@ -9,7 +9,7 @@
                         :key="item._id"
                         :label="item.name"
                         :value="item._id"
-                    ></el-option>
+                        ></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="名称">
