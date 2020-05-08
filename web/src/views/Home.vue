@@ -50,22 +50,49 @@
         <!--  -->
         <m-list-card title="新闻资讯" icon="menu" :categories="newsCats">
             <template #category="{items}">
-                <div v-for="(mm,ii) in items.newList" class="d-flex" :key="ii" style="padding:0.7692rem 0;">
+                <router-link
+                    tag="div"
+                    :to="`/articles/${mm._id}`"
+                    v-for="(mm,ii) in items.newList"
+                    class="d-flex"
+                    :key="ii"
+                    style="padding:0.7692rem 0;"
+                >
                     <span class="text-info" style="margin-right:0.3615rem;">[{{mm.categroyName}}]</span>
                     <span style="margin-right:0.4615rem;">|</span>
-                    <span class="flex-1 text-drak fz-sm text-ellipsis">{{mm.title}}</span>
+                    <span
+                        class="flex-1 text-drak fz-sm text-ellipsis"
+                        style="padding-right:0.8538rem"
+                    >{{mm.title}}</span>
                     <span class="text-grey">{{mm.createdAt | data}}</span>
-                </div>
+                </router-link>
+            </template>
+        </m-list-card>
+        <!-- end of  新闻资讯 -->
+
+        <m-list-card title="英雄列表" icon="card-hero" :categories="heroesCats">
+            <template #category="{items}">
+                <ul class="d-flex flex-wrap" style="margin:0 -0.6923rem">
+                    <li
+                        class
+                        style="width:20%; padding:0.6154rem;"
+                        v-for="(item, i) in items.heroList"
+                        :key="i"
+                    >
+                        <img style="width:100%" :src="item.avater" />
+                        <h4 class="test-center">{{item.name}}</h4>
+                    </li>
+                </ul>
             </template>
         </m-list-card>
     </div>
 </template>
 <script>
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 export default {
     filters: {
         data(val) {
-            return dayjs(val).format('MM/DD')
+            return dayjs(val).format("MM/DD");
         }
     },
     name: "carrousel",
@@ -85,7 +112,8 @@ export default {
                 loop: true
                 // Some Swiper option/callback...
             },
-            newsCats: []
+            newsCats: [],
+            heroesCats: []
         };
     },
     computed: {
@@ -94,7 +122,8 @@ export default {
         }
     },
     created() {
-        this.getList()
+        this.getList();
+        this.getHeroList();
     },
     mounted() {
         this.swiper.slideTo(3, 1000, false);
@@ -102,8 +131,11 @@ export default {
     methods: {
         async getList() {
             const { data } = await this.$http.get("/news/list");
-            this.newsCats = data
-            console.log(this.newsCats)
+            this.newsCats = data;
+        },
+        async getHeroList() {
+            const { data } = await this.$http.get("/heroes/list");
+            this.heroesCats = data;
         }
     }
 };

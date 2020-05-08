@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
     outline: none;
+    padding: 0;
+    margin: 0;
 }
 
 html {
@@ -17,6 +19,12 @@ body {
 a {
     text-decoration: none;
     color: #333
+}
+ul {
+    list-style: none;
+}
+h4 {
+    margin: 0;
 }
 
 // $colors

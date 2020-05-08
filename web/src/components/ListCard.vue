@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div style="padding-top:0.7692rem;">
-                <swiper ref="list"  @slide-change="handleSlide">
+                <swiper ref="list"  @slide-change="handleSlide" :options="{autoHeight: true}">
                     <swiper-slide v-for="(m,i) in categories" :key="i">
                         <slot name="category" :items="m"></slot>
                     </swiper-slide>
@@ -41,6 +41,7 @@ export default {
     },
     methods: {
         handleSlide () {
+            console.log(123)
             this.active = this.$refs.list.$swiper.activeIndex
         }
     },
