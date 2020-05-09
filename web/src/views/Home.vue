@@ -73,7 +73,9 @@
         <m-list-card title="英雄列表" icon="card-hero" :categories="heroesCats">
             <template #category="{items}">
                 <ul class="d-flex flex-wrap" style="margin:0 -0.6923rem">
-                    <li
+                    <router-link
+                        tag="li"
+                        :to="`/heroes/${item._id}`"
                         class
                         style="width:20%; padding:0.6154rem;"
                         v-for="(item, i) in items.heroList"
@@ -81,10 +83,11 @@
                     >
                         <img style="width:100%" :src="item.avater" />
                         <h4 class="test-center">{{item.name}}</h4>
-                    </li>
+                    </router-link>
                 </ul>
             </template>
         </m-list-card>
+        <!-- end of 英雄列表 -->
     </div>
 </template>
 <script>

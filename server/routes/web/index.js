@@ -146,10 +146,27 @@ module.exports = (app) => {
         cats.unshift({
             name: '热门',
             heroList: await Hero.find().where({
-                categories: { $in: subCats }
+                categories: { $in: subCats },
             }).limit(10).lean()
         })
         res.send(cats)
     })
+
+    // 查询文章
+    router.get('/articles/:id', async (req, res) => {
+        const data = await Article.findById(req.params.id).lean()
+        data.related = await Article.find().where({
+            categories: { $in : data.categories},
+            title: { $ne: Article.title},
+        }).limit(2)
+        res.send(data)
+    })
+
+    // 查询英雄详情
+    router.get('/heroes/:id', async (req, res) => {
+        const data = await Hero.findById(req.params.id).populate('categories').lean()
+        res.send(data)
+    })
+
     app.use('/web/api', router)
 }

@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const schema = new mongoose.Schema({
     name: { type: String },
     avater: { type: String },
+    banner: { type: String },
     title: { type: String },
     categories: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Category' }],
     scores: { // 符合类型  //  评分
@@ -14,6 +15,8 @@ const schema = new mongoose.Schema({
         icon: { type: String },
         name: { type: String },
         description: { type: String },
+        delay: { type: String },
+        cost: { type: String },
         tips: { type: String }
     }],
     items1: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Item' }], // 顺风出装
@@ -29,7 +32,7 @@ const schema = new mongoose.Schema({
 
 module.exports = mongoose.model('Hero', schema, 'heroes')
     /**
-     * type: mongoose.SchemaTypes.ObjectId  指定数据类型是id populate
-     * 查询对象时，对象中存在其他对象的引用，查询出来的引用对象默认是显示引用对象的id，如果需要引用对象的其他属性就需要使用populate方法填充引用对象。
-     * ref: 'Item'  指定用谁的id
-     */
+ * type: mongoose.SchemaTypes.ObjectId  指定数据类型是id populate
+ * 查询对象时，对象中存在其他对象的引用，查询出来的引用对象默认是显示引用对象的id，如果需要引用对象的其他属性就需要使用populate方法填充引用对象。
+ * ref: 'Item'  指定用谁的id
+ */
