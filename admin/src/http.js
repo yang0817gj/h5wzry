@@ -2,8 +2,11 @@ import axios from 'axios'
 import Vue from 'vue';
 import router from './router'
 const http = axios.create({
-    baseURL: 'http://localhost:3000/admin/api'
+    // baseURL: 'http://localhost:3000/admin/api'
+    baseURL: process.env.VUE_APP_API_URL || '/admin/api'
 })
+// baseURL 不是写死，生产环境和开发环境不一样，
+// 通过 process.env.VUE_APP_自己写
 
 
 // axios 请求拦截器

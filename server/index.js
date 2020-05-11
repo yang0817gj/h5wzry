@@ -8,6 +8,8 @@ app.use(express.json())
 app.set('secret', 'a123s4das231da')
 
 app.listen(3000, () => console.log('http://localhost:3000'))
+app.use('/', express.static(path.join(__dirname, 'web')))
+app.use('/admin', express.static(path.join(__dirname, 'admin')))
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 require('./routes/admin')(app)
     require('./plugins/db')(app)
